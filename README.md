@@ -20,11 +20,73 @@ Immutable NoSQL database that works on a single plain text file
 pip3 install --user advance-touch
 ```
 
-## Use
+## Documentation
+
+All documentation can be read as a sequential tutorial.
+
+### Start
+
+```python
+import fiable_db
+
+db = fiable_db.start()
+```
 
 ### Agregation
 
+Only one:
+
+```python
+db.add({"name": "Noelia", "age": 34, "height": 165})
+// {"id": 1, "rev": 1, "data": {"name": "Miguel", "age": 54, "height": 155}}
+```
+
+Various:
+
+```python
+db.add(
+    [
+        {"name": "Noelia", "age": 34, "height": 165},
+        {"name": "Juan", "age": 41, "height": 187},
+        {"name": "Valentina", "age": 12, "height": 142},
+    ]
+)
+//  [
+//      {"id": 2, "rev": 1, "data": {{"name": "Noelia", "age": 34, "height": 165}},
+//      {"id": 3, "rev": 1, "data": {{"name": "Juan", "age": 41, "height": 187}},
+//      {"id": 4, "rev": 1, "data": {{"name": "Valentina", "age": 83, "height": 172}},
+//  ]
+```
+
 ### Update
+
+Update a key:
+
+```python
+db.update(4, {"age": 21})
+// {"id": 4, "rev": 2, "data": {{"name": "Valentina", "age": 21, "height": 172}}
+```
+
+Add new key:
+
+```python
+db.update(4, {"is_active": True})
+// {"id": 4, "rev": 3, "data": {{"name": "Valentina", "age": 21, "height": 172, "is_active": True}}
+```
+
+Delete key:
+
+```python
+db.update(4, {"height": None})
+// {"id": 4, "rev": 4, "data": {{"name": "Valentina", "age": 21, "is_active": True}}
+```
+
+Forcing new structure.
+
+```python
+db.update(4, {"name": "Javier", "email": "foo@example.com"}, force=True)
+// {"id": 4, "rev": 5, "data": {{"name": "Javier", "email": "foo@example.com"}}
+```
 
 ### Delete
 
