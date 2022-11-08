@@ -1,4 +1,4 @@
-Immutable NoSQL database that works on a single plain text file.
+Immutable NoSQL database that works on a single plain text file
 
 ## Features
 
@@ -9,3 +9,19 @@ Immutable NoSQL database that works on a single plain text file.
 - Minimalistic to implement and use.
 
 ## Advantages of using an immutable database
+
+---
+
+## Install
+
+## Use
+
+### Agregation
+
+### Update
+
+### Delete
+
+### Find all
+
+### Find one
