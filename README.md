@@ -61,11 +61,11 @@ fiable_db.add(
         {"name": "Valentina", "age": 12, "height": 142},
     ]
 )
-#  [
-#      {"id": 2, "rev": 1, "data": {{"name": "Noelia", "age": 34, "height": 165}},
-#      {"id": 3, "rev": 1, "data": {{"name": "Juan", "age": 41, "height": 187}},
-#      {"id": 4, "rev": 1, "data": {{"name": "Valentina", "age": 83, "height": 172}},
-#  ]
+# [
+#     {"id": 2, "rev": 1, "data": {{"name": "Noelia", "age": 34, "height": 165}},
+#     {"id": 3, "rev": 1, "data": {{"name": "Juan", "age": 41, "height": 187}},
+#     {"id": 4, "rev": 1, "data": {{"name": "Valentina", "age": 83, "height": 172}},
+# ]
 ```
 
 ### Step 3: Update
@@ -173,10 +173,10 @@ You can create as many tables as you want. The default table is called `default`
 fiable_db.add({"name": "Luciano", "age": 54, "height": 165}, table="users")
 # {"id": 1, "rev": 1, "data": {"name": "Luciano", "age": 54, "height": 165}}
 
-fiable_db.find_one(id=1, table="users") // "users" table
+fiable_db.find_one(id=1, table="users") # "users" table
 # {"id": 1, "rev": 1, "data": {"name": "Luciano", "age": 54, "height": 165}}
 
-fiable_db.find_one(id=1) // Default table
+fiable_db.find_one(id=1) # Default table
 # {"id": 1, "rev": 1, "data": {"name": "Miguel", "age": 41, "height": 189}}
 ```
 
