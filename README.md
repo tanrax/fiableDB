@@ -20,31 +20,41 @@ Immutable NoSQL database that works on a single plain text file
 pip3 install --user advance-touch
 ```
 
-## Documentation
+## Docs
 
 All documentation can be read as a sequential tutorial.
 
-### Start
+### Step1: Start
+
+To load the database you must import reliable_db and start it.
 
 ```python
 import fiable_db
 
-db = fiable_db.start()
+fiable_db.start()
 ```
 
-### Agregation
+It will create a file named `fiable_db.json` in the current directory. If you want to change the name of the file, you can do it by passing the name as a parameter.
+
+```python
+fiable_db.start("my_db.json")
+```
+
+If the file already exists, it will be loaded. Nothing is deleted here!
+
+### Step 2: Agregation
 
 Only one:
 
 ```python
-db.add({"name": "Noelia", "age": 34, "height": 165})
-// {"id": 1, "rev": 1, "data": {"name": "Miguel", "age": 54, "height": 155}}
+fiable_db.add({"name": "Miguel", "age": 41, "height": 189})
+// {"id": 1, "rev": 1, "data": {"name": "Miguel", "age": 41, "height": 189}}
 ```
 
 Various:
 
 ```python
-db.add(
+fiable_db.add(
     [
         {"name": "Noelia", "age": 34, "height": 165},
         {"name": "Juan", "age": 41, "height": 187},
@@ -58,39 +68,103 @@ db.add(
 //  ]
 ```
 
-### Update
+### Step 3: Update
 
 Update a key:
 
 ```python
-db.update(4, {"age": 21})
+fiable_db.update(4, {"age": 21})
 // {"id": 4, "rev": 2, "data": {{"name": "Valentina", "age": 21, "height": 172}}
 ```
 
 Add new key:
 
 ```python
-db.update(4, {"is_active": True})
+fiable_db.update(4, {"is_active": True})
 // {"id": 4, "rev": 3, "data": {{"name": "Valentina", "age": 21, "height": 172, "is_active": True}}
 ```
 
 Delete key:
 
 ```python
-db.update(4, {"height": None})
+fiable_db.update(4, {"height": None})
 // {"id": 4, "rev": 4, "data": {{"name": "Valentina", "age": 21, "is_active": True}}
 ```
 
 Forcing new structure.
 
 ```python
-db.update(4, {"name": "Javier", "email": "foo@example.com"}, force=True)
+fiable_db.update(4, {"name": "Javier", "email": "foo@example.com"}, force=True)
 // {"id": 4, "rev": 5, "data": {{"name": "Javier", "email": "foo@example.com"}}
 ```
 
-### Delete
+### Step 4: Delete
 
-### Find all
+```python
+fiable_db.delete(4)
+// {"id": 4, "rev": 6, "data": None}
+```
 
-### Find one
+### Step 5: Find one
 
+Search by id.
+
+```python
+fiable_db.find_one(id=2)
+// {"id": 2, "rev": 1, "data": {{"name": "Noelia", "age": 34, "height": 165}}
+```
+
+Search by value.
+
+```python
+fiable_db.find_one(data={"name": "Noelia"})
+// {"id": 2, "rev": 1, "data": {{"name": "Noelia", "age": 34, "height": 165}}
+```
+
+Search by several values.
+
+```python
+fiable_db.find_one(data={"name": "Noelia", "age": 34})
+// {"id": 2, "rev": 1, "data": {{"name": "Noelia", "age": 34, "height": 165}}
+```
+
+No results.
+
+```python
+fiable_db.find_one(data={"name": "Noelia", "is_active": False})
+// None
+```
+
+### Step 6: Find all
+
+
+```python
+fiable_db.find_all(data={"age": 41})
+// [
+//      {"id": 1, "rev": 1, "data": {{"name": "Miguel", "age": 41, "height": 189}},
+//      {"id": 3, "rev": 1, "data": {{"name": "Juan", "age": 41, "height": 187}},
+// ]
+```
+
+### Step 7: See previous revisions
+
+Previous version to be deleted.
+
+```python
+fiable_db.find_one(id=4, rev=3)
+// {"id": 4, "rev": 3, "data": {{"name": "Valentina", "age": 21, "height": 172, "is_active": True}}
+```
+
+You can also use negative numbers.
+
+```python
+fiable_db.find_one(id=4, rev=-1)
+// {"id": 4, "rev": 3, "data": {{"name": "Valentina", "age": 21, "height": 172, "is_active": True}}
+
+fiable_db.find_one(id=4, rev=-2)
+// {"id": 4, "rev": 2, "data": {{"name": "Valentina", "age": 21, "height": 172}}
+```
+
+---
+
+Thanks to the power of 🐍 Python 🐍
