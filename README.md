@@ -17,7 +17,7 @@ Immutable NoSQL database that works on a single plain text file
 ## Install
 
 ```python
-pip3 install --user advance-touch
+pip3 install --user fiable_db
 ```
 
 ## Docs
@@ -163,6 +163,21 @@ fiable_db.find_one(id=4, rev=-1)
 
 fiable_db.find_one(id=4, rev=-2)
 // {"id": 4, "rev": 2, "data": {{"name": "Valentina", "age": 21, "height": 172}}
+```
+
+### Step 8: Working with tables or collections.
+
+You can create as many tables as you want. The default table is called `default`. If you want to work in another area, just use the `table` attribute in any of the above functions.
+
+```python
+fiable_db.add({"name": "Luciano", "age": 54, "height": 165}, table="users")
+// {"id": 1, "rev": 1, "data": {"name": "Luciano", "age": 54, "height": 165}}
+
+fiable_db.find_one(id=1, table="users") // "users" table
+// {"id": 1, "rev": 1, "data": {"name": "Luciano", "age": 54, "height": 165}}
+
+fiable_db.find_one(id=1) // Default table
+// {"id": 1, "rev": 1, "data": {"name": "Miguel", "age": 41, "height": 189}}
 ```
 
 ---
