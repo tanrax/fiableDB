@@ -28,7 +28,7 @@ All documentation can be read as a sequential tutorial.
 
 ### Step1: Start
 
-To load the database you must import reliable_db and start it.
+To load the database you must import `fiable_db` and start it.
 
 ```python
 import fiable_db
@@ -39,7 +39,7 @@ fiable_db.start()
 It will create a file named `fiable_db.json` in the current directory. If you want to change the name of the file, you can do it by passing the name as a parameter.
 
 ```python
-fiable_db.start("my_db.json")
+fiable_db.start(file="my_db.json")
 ```
 
 If the file already exists, it will be loaded. Nothing is deleted here!
@@ -66,7 +66,7 @@ fiable_db.add(
 # [
 #     {"id": 2, "rev": 1, "data": {{"name": "Noelia", "age": 34, "height": 165}},
 #     {"id": 3, "rev": 1, "data": {{"name": "Juan", "age": 41, "height": 187}},
-#     {"id": 4, "rev": 1, "data": {{"name": "Valentina", "age": 83, "height": 172}},
+#     {"id": 4, "rev": 1, "data": {{"name": "Valentina", "age": 12, "height": 142}},
 # ]
 ```
 
@@ -79,21 +79,21 @@ fiable_db.update(4, {"age": 21})
 # {"id": 4, "rev": 2, "data": {{"name": "Valentina", "age": 21, "height": 172}}
 ```
 
-Add new key:
+If the key does not exist, it will be added:
 
 ```python
 fiable_db.update(4, {"is_active": True})
 # {"id": 4, "rev": 3, "data": {{"name": "Valentina", "age": 21, "height": 172, "is_active": True}}
 ```
 
-Delete key:
+To delete a key you only have to give it a value `None`.
 
 ```python
 fiable_db.update(4, {"height": None})
 # {"id": 4, "rev": 4, "data": {{"name": "Valentina", "age": 21, "is_active": True}}
 ```
 
-Forcing new structure.
+To overwrite the dictionary, use the `force=True`:
 
 ```python
 fiable_db.update(4, {"name": "Javier", "email": "foo@example.com"}, force=True)
@@ -102,8 +102,17 @@ fiable_db.update(4, {"name": "Javier", "email": "foo@example.com"}, force=True)
 
 ### Step 4: Delete
 
+You can be specific by using the `id`.
+
 ```python
-fiable_db.delete(4)
+fiable_db.delete(id=4)
+# {"id": 4, "rev": 6, "data": None}
+```
+
+And you can delete by performing a search for their values:
+
+```python
+fiable_db.delete(data={"name": "Javier"})
 # {"id": 4, "rev": 6, "data": None}
 ```
 
@@ -116,7 +125,7 @@ fiable_db.find_one(id=2)
 # {"id": 2, "rev": 1, "data": {{"name": "Noelia", "age": 34, "height": 165}}
 ```
 
-Search by value.
+Search by value. It will give you the first match.
 
 ```python
 fiable_db.find_one(data={"name": "Noelia"})
@@ -130,7 +139,7 @@ fiable_db.find_one(data={"name": "Noelia", "age": 34})
 # {"id": 2, "rev": 1, "data": {{"name": "Noelia", "age": 34, "height": 165}}
 ```
 
-No results.
+If there are no results it will return a None.
 
 ```python
 fiable_db.find_one(data={"name": "Noelia", "is_active": False})
@@ -148,16 +157,25 @@ fiable_db.find_all(data={"age": 41})
 # ]
 ```
 
+If no results are found it will return an empty list.
+
+```python
+fiable_db.find_all(data={"age": 88})
+# []
+```
+
 ### Step 7: See previous revisions
 
-Previous version to be deleted.
+At any time you can view the previous information of any row using the `rev` parameter.
+
+Example: Previous version to be deleted.
 
 ```python
 fiable_db.find_one(id=4, rev=3)
 # {"id": 4, "rev": 3, "data": {{"name": "Valentina", "age": 21, "height": 172, "is_active": True}}
 ```
 
-You can also use negative numbers.
+For convenience, you can use negative numbers. `-1` will be the previous state, `-2` is 2 states back, etc.
 
 ```python
 fiable_db.find_one(id=4, rev=-1)
@@ -169,7 +187,7 @@ fiable_db.find_one(id=4, rev=-2)
 
 ### Step 8: Working with tables or collections.
 
-You can create as many tables as you want. The default table is called `default`. If you want to work in another area, just use the `table` attribute in any of the above functions.
+You can create as many tables as you want. The default table is called `default`. If you want to work in another table, just use the `table` attribute in any of the above functions.
 
 ```python
 fiable_db.add({"name": "Luciano", "age": 54, "height": 165}, table="users")
