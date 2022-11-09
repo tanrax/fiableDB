@@ -29,7 +29,7 @@ jobs:
     - name: Install dependencies
       run: |
         python3 -m pip install --upgrade pip
-        pip3 install setuptools twine
+        pip3 install wheel twine
     - name: Add version
       run: sed -i 's/VERSION/${{github.ref_name}}/g' setup.py 
     - name: Build package
