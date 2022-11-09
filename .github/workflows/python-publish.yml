@@ -33,4 +33,4 @@ jobs:
     - name: Build package
       run: python3 setup.py sdist bdist_wheel
     - name: Publish package
-      run: twine upload --non-interactive --username ${{SECRETS.user}} --password ${{SECRETS.password}} dist/*
+      run: twine upload --non-interactive --username ${{ secrets.USER }} --password ${{ secrets.PASSWORD }} dist/*
