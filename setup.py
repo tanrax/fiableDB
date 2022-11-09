@@ -1,0 +1,19 @@
+from setuptools import setup
+setup(
+  name = 'fiable_db',
+  py_modules=['fiable_db'],
+  version = '0.0.1',
+  python_requires='>3.7',
+  description = ' Immutable NoSQL database in a plain file ',
+  author = 'Andros Fenollosa',
+  author_email = 'andros@fenollosa.email',
+  url = 'https://github.com/tanrax/fiableDB',
+  keywords = ['database', 'immutable', 'nosql', 'json'],
+  classifiers=(
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: GNU License",
+        "Operating System :: OS Independent",
+  ),
+  install_requires=[],
+  entry_points=''
+)
