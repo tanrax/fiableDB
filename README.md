@@ -1,4 +1,6 @@
-Immutable NoSQL database that works on a single plain text file
+<p align="center">
+    <img src="assets/logo.png" alt="fiableDB logo">
+</p>
 
 ## Features
 
