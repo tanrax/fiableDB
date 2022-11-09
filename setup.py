@@ -9,11 +9,11 @@ setup(
   author_email = 'andros@fenollosa.email',
   url = 'https://github.com/tanrax/fiableDB',
   keywords = ['database', 'immutable', 'nosql', 'json'],
-  classifiers=(
+  classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: OS Independent",
-  ),
+  ],
   install_requires=[],
   entry_points=''
 )
