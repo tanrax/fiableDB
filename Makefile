@@ -5,5 +5,5 @@ help:
 format: ## Format Python
 	black --exclude="/(dist|build|__pycache__|venv|\.git)/" .
 
-test: ## Run tests
+run.test: ## Run tests
 	pytest test/
