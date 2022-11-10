@@ -1,4 +1,5 @@
 FILE = "fiabledb.json"
+data = {}
 
 
 def start(filename: str = "") -> str:
@@ -10,6 +11,27 @@ def start(filename: str = "") -> str:
     """
     file_name = filename if filename else FILE
     return file_name
+
+
+def save(filename: str = "", data: list[str, list[int, int, dict]] = {}) -> bool:
+    """Save the database
+    Args:
+        filename (str, optional): The file to save to. Defaults to "".
+        data (list[str, list[int, int, dict]], optional): The data to save. Defaults to {}.
+    Returns:
+        bool: True if the data was saved, False otherwise
+    """
+    pass
+
+
+def load(filename: str = "") -> list[str, list[int, int, dict]]:
+    """Load the database
+    Args:
+        filename (str, optional): The file to load from. Defaults to "".
+    Returns:
+        list[str, list[int, int, dict]]: The data loaded
+    """
+    pass
 
 
 def add(
