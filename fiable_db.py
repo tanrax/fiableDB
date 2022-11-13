@@ -10,6 +10,7 @@ def start(filename: str = "") -> str:
         str: The file used
     """
     file_name = filename if filename else FILE
+    print("Function not implemented yet")
     return file_name
 
 
@@ -21,7 +22,7 @@ def save(filename: str = "", data: list[str, list[int, int, dict]] = {}) -> bool
     Returns:
         bool: True if the data was saved, False otherwise
     """
-    pass
+    print("Function not implemented yet")
 
 
 def load(filename: str = "") -> list[str, list[int, int, dict]]:
@@ -31,7 +32,7 @@ def load(filename: str = "") -> list[str, list[int, int, dict]]:
     Returns:
         list[str, list[int, int, dict]]: The data loaded
     """
-    pass
+    print("Function not implemented yet")
 
 
 def add(
@@ -50,7 +51,7 @@ def add(
         return [_add(entry, table) for entry in new_data]
     else:
         raise TypeError("new_data must be a dict or list")
-    pass
+    print("Function not implemented yet")
 
 
 def update(
@@ -64,7 +65,7 @@ def update(
     Returns:
         dict[int, int, dict]: The data updated
     """
-    pass
+    print("Function not implemented yet")
 
 
 def delete(id: int, data: dict, table: str = "") -> dict[int, int, dict]:
@@ -76,7 +77,7 @@ def delete(id: int, data: dict, table: str = "") -> dict[int, int, dict]:
     Returns:
         dict[int, int, dict]: The data deleted
     """
-    pass
+    print("Function not implemented yet")
 
 
 def find_one(
@@ -91,7 +92,7 @@ def find_one(
     Returns:
         dict[int, int, dict]: The data found
     """
-    pass
+    print("Function not implemented yet")
 
 
 def find_all(data: dict = {}, table: str = "") -> list[dict[int, int, dict]]:
@@ -102,4 +103,4 @@ def find_all(data: dict = {}, table: str = "") -> list[dict[int, int, dict]]:
     Returns:
         list[dict[int, int, dict]]: The data found
     """
-    pass
+    print("Function not implemented yet")
