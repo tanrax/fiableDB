@@ -201,6 +201,11 @@ fiable_db.find_one(id=1) # Default table
 # {"id": 1, "rev": 1, "data": {"name": "Miguel", "age": 41, "height": 189}}
 ```
 
+## Implementations in other languages
+
+- [Clojure](https://github.com/Toni-zgz/db_inmutable).
+- [Haskell](https://github.com/FabianVegaA/SafeDB).
+
 ---
 
 Thanks to the power of 🐍 Python 🐍
