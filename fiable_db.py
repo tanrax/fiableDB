@@ -55,11 +55,13 @@ def add(
 
 
 def update(
-    new_data: dict | list, table: str = "", force: bool = False
+        id: int,
+    new_data: dict, table: str = "", force: bool = False
 ) -> dict[int, int, dict]:
     """Update data in the database
     Args:
-        new_data (dict|list): The data to update
+        id (int): The id of the data to update.
+        new_data (dict): The data to update
         table (str, optional): The table to update. Defaults to "".
         force (bool, optional): Force the update. Defaults to False.
     Returns:
