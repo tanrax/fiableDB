@@ -65,9 +65,9 @@ fiable_db.add(
     ]
 )
 # [
-#     {"id": 2, "rev": 1, "data": {{"name": "Noelia", "age": 34, "height": 165}},
-#     {"id": 3, "rev": 1, "data": {{"name": "Juan", "age": 41, "height": 187}},
-#     {"id": 4, "rev": 1, "data": {{"name": "Valentina", "age": 12, "height": 142}},
+#     {"id": 2, "rev": 1, "data": {"name": "Noelia", "age": 34, "height": 165}},
+#     {"id": 3, "rev": 1, "data": {"name": "Juan", "age": 41, "height": 187}},
+#     {"id": 4, "rev": 1, "data": {"name": "Valentina", "age": 12, "height": 142}},
 # ]
 ```
 
@@ -77,28 +77,28 @@ Update a key:
 
 ```python
 fiable_db.update(4, {"age": 21})
-# {"id": 4, "rev": 2, "data": {{"name": "Valentina", "age": 21, "height": 172}}
+# {"id": 4, "rev": 2, "data": {"name": "Valentina", "age": 21, "height": 172}}
 ```
 
 If the key does not exist, it will be added:
 
 ```python
 fiable_db.update(4, {"is_active": True})
-# {"id": 4, "rev": 3, "data": {{"name": "Valentina", "age": 21, "height": 172, "is_active": True}}
+# {"id": 4, "rev": 3, "data": {"name": "Valentina", "age": 21, "height": 172, "is_active": True}}
 ```
 
 To delete a key you only have to give it a value `None`.
 
 ```python
 fiable_db.update(4, {"height": None})
-# {"id": 4, "rev": 4, "data": {{"name": "Valentina", "age": 21, "is_active": True}}
+# {"id": 4, "rev": 4, "data": {"name": "Valentina", "age": 21, "is_active": True}}
 ```
 
 To overwrite the dictionary, use the `force=True`:
 
 ```python
 fiable_db.update(4, {"name": "Javier", "email": "foo@example.com"}, force=True)
-# {"id": 4, "rev": 5, "data": {{"name": "Javier", "email": "foo@example.com"}}
+# {"id": 4, "rev": 5, "data": {"name": "Javier", "email": "foo@example.com"}}
 ```
 
 ### Step 4: Delete
@@ -123,21 +123,21 @@ Search by id.
 
 ```python
 fiable_db.find_one(id=2)
-# {"id": 2, "rev": 1, "data": {{"name": "Noelia", "age": 34, "height": 165}}
+# {"id": 2, "rev": 1, "data": {"name": "Noelia", "age": 34, "height": 165}}
 ```
 
 Search by value. It will give you the first match.
 
 ```python
 fiable_db.find_one(data={"name": "Noelia"})
-# {"id": 2, "rev": 1, "data": {{"name": "Noelia", "age": 34, "height": 165}}
+# {"id": 2, "rev": 1, "data": {"name": "Noelia", "age": 34, "height": 165}}
 ```
 
 Search by several values.
 
 ```python
 fiable_db.find_one(data={"name": "Noelia", "age": 34})
-# {"id": 2, "rev": 1, "data": {{"name": "Noelia", "age": 34, "height": 165}}
+# {"id": 2, "rev": 1, "data": {"name": "Noelia", "age": 34, "height": 165}}
 ```
 
 If there are no results it will return a None.
@@ -153,8 +153,8 @@ fiable_db.find_one(data={"name": "Noelia", "is_active": False})
 ```python
 fiable_db.find_all(data={"age": 41})
 # [
-#      {"id": 1, "rev": 1, "data": {{"name": "Miguel", "age": 41, "height": 189}},
-#      {"id": 3, "rev": 1, "data": {{"name": "Juan", "age": 41, "height": 187}},
+#      {"id": 1, "rev": 1, "data": {"name": "Miguel", "age": 41, "height": 189}},
+#      {"id": 3, "rev": 1, "data": {"name": "Juan", "age": 41, "height": 187}},
 # ]
 ```
 
@@ -173,17 +173,17 @@ Example: Previous version to be deleted.
 
 ```python
 fiable_db.find_one(id=4, rev=3)
-# {"id": 4, "rev": 3, "data": {{"name": "Valentina", "age": 21, "height": 172, "is_active": True}}
+# {"id": 4, "rev": 3, "data": {"name": "Valentina", "age": 21, "height": 172, "is_active": True}}
 ```
 
 For convenience, you can use negative numbers. `-1` will be the previous state, `-2` is 2 states back, etc.
 
 ```python
 fiable_db.find_one(id=4, rev=-1)
-# {"id": 4, "rev": 3, "data": {{"name": "Valentina", "age": 21, "height": 172, "is_active": True}}
+# {"id": 4, "rev": 3, "data": {"name": "Valentina", "age": 21, "height": 172, "is_active": True}}
 
 fiable_db.find_one(id=4, rev=-2)
-# {"id": 4, "rev": 2, "data": {{"name": "Valentina", "age": 21, "height": 172}}
+# {"id": 4, "rev": 2, "data": {"name": "Valentina", "age": 21, "height": 172}}
 ```
 
 ### Step 8: Working with tables or collections.
