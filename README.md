@@ -19,6 +19,8 @@
 
 ## Install
 
+Python version: >=3.8
+
 ```python
 pip3 install --user fiable_db
 ```
@@ -199,6 +201,32 @@ fiable_db.find_one(id=1, table="users") # "users" table
 
 fiable_db.find_one(id=1) # Default table
 # {"id": 1, "rev": 1, "data": {"name": "Miguel", "age": 41, "height": 189}}
+```
+
+### Other help functions
+
+#### Get all data
+
+Get all data from the database.
+
+```python
+get_database()
+```
+
+### Load file
+
+Load a file into the database.
+
+```python
+load(filename)
+```
+
+### Save file
+
+Save the database to a file.
+
+```python
+save(filename, data)
 ```
 
 ## Implementations in other languages
