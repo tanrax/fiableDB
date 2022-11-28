@@ -208,7 +208,7 @@ fiable_db.find_one(id=1) # Default table
 Save the database to a file.
 
 ```python
-fiable_db.save(filename, data)
+fiable_db.save()
 ```
 
 ### Other help functions
@@ -227,6 +227,14 @@ Load a file into the database.
 
 ```python
 fiable_db.load(filename)
+```
+
+### Save file
+
+Save a file into the database.
+
+```python
+fiable_db.save(filename)
 ```
 
 ## Implementations in other languages

@@ -11,7 +11,6 @@ def test_add_two():
     """Add two items to the database."""
     add({"name": "John", "age": 12})
     add({"name": "Jane", "age": 34})
-    print(get_database())
     assert get_database() == [
         {"id": 1, "rev": 1, "data": {"name": "John", "age": 42}},
         {"id": 2, "rev": 1, "data": {"name": "John", "age": 12}},

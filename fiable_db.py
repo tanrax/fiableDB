@@ -17,14 +17,14 @@ class TypeData(TypedDict):
 
 Type_Data_List = Tuple[TypeData]
 Type_Add_Data = Union[Dict, Sequence[Dict]]
-Type_Add_Return = Union[Tuple[int, int, Dict],
-                        Tuple[Tuple[int, int, Dict]], None]
+Type_Add_Return = Union[Tuple[int, int, Dict], Tuple[Tuple[int, int, Dict]], None]
 Type_Update_Return = Union[Tuple[Tuple[int, int, Dict]]]
 Type_Delete_Return = Union[Tuple[Tuple[int, int, Dict]]]
 Type_Find_One_Return = TypeData
 Type_Find_All_Return = Tuple[Type_Find_One_Return]
 
 # Functions
+
 
 def get_next_id(table: str = "default") -> int:
     """Get the next id for a table"""
@@ -39,18 +39,20 @@ def start(file_name: str = "") -> str:
     Returns:
         str: The file used
     """
+    global FILE
     global database
-    my_file_name = file_name if file_name else FILE
+    my_file_name = file_name if file_name != "" else FILE
     if path.exists(my_file_name):
         # Load the database
         load(my_file_name)
     else:
         # Create the database
-        save(my_file_name, database)
+        database = []
+        save(my_file_name)
     return my_file_name
 
 
-def save(file_name: str = "", data: TypeData = {}) -> bool:
+def save(file_name: str = "") -> bool:
     """Save the database
     Args:
         file_name (str, optional): The file to save to. Defaults to "".
@@ -58,10 +60,11 @@ def save(file_name: str = "", data: TypeData = {}) -> bool:
     Returns:
         bool: True if the data was saved, False otherwise
     """
+    global FILE
     global database
-    my_file_name = file_name if file_name else FILE
+    my_file_name = file_name if file_name != "" else FILE
     with open(my_file_name, "w") as f:
-        database = json.dump({}, f)
+        json.dump(database, f)
     return True
 
 
