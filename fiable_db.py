@@ -1,12 +1,14 @@
-from os import path
-import json
 from typing import Dict, Tuple, Union, Sequence, TypedDict
+import json
+from os import path
 
 # Variables
 FILE = "fiabledb.json"
-database = {}
+database = []
 
 # Type aliases
+
+
 class TypeData(TypedDict):
     id: int
     rev: int
@@ -15,12 +17,19 @@ class TypeData(TypedDict):
 
 Type_Data_List = Tuple[TypeData]
 Type_Add_Data = Union[Dict, Sequence[Dict]]
-Type_Add_Return = Union[Tuple[int, int, Dict], Tuple[Tuple[int, int, Dict]], None]
+Type_Add_Return = Union[Tuple[int, int, Dict],
+                        Tuple[Tuple[int, int, Dict]], None]
 Type_Update_Return = Union[Tuple[Tuple[int, int, Dict]]]
-
 Type_Delete_Return = Union[Tuple[Tuple[int, int, Dict]]]
 Type_Find_One_Return = TypeData
 Type_Find_All_Return = Tuple[Type_Find_One_Return]
+
+# Functions
+
+def get_next_id(table: str = "default") -> int:
+    """Get the next id for a table"""
+    global database
+    return database[-1]["id"] + 1 if database else 1
 
 
 def start(file_name: str = "") -> str:
@@ -87,7 +96,7 @@ def get_database() -> Type_Data_List:
     return database
 
 
-def add(new_data: Type_Add_Data, table: str = "") -> Type_Add_Return:
+def add(new_data: Type_Add_Data, table: str = "default") -> Type_Add_Return:
     """Add data to the database
     Args:
         new_data (dict|list): The data to add
@@ -95,13 +104,17 @@ def add(new_data: Type_Add_Data, table: str = "") -> Type_Add_Return:
     Returns:
         dict[int, int, dict]|list[dict[int, int, dict]]: The data added
     """
+    global database
     if isinstance(new_data, dict):
-        return _add(new_data, table)
+        new_row = {"id": get_next_id(table), "rev": 1, "data": new_data}
+        database.append(new_row)
+        return new_row
     elif isinstance(new_data, list):
-        return [_add(entry, table) for entry in new_data]
+        for row in new_data:
+            new_row = {"id": get_next_id(table), "rev": 1, "data": row}
+            database.append(new_row)
     else:
         raise TypeError("new_data must be a dict or list")
-    print("Function not implemented yet")
 
 
 def update(

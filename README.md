@@ -203,6 +203,14 @@ fiable_db.find_one(id=1) # Default table
 # {"id": 1, "rev": 1, "data": {"name": "Miguel", "age": 41, "height": 189}}
 ```
 
+### Step 9: Save changes
+
+Save the database to a file.
+
+```python
+fiable_db.save(filename, data)
+```
+
 ### Other help functions
 
 #### Get all data
@@ -210,7 +218,7 @@ fiable_db.find_one(id=1) # Default table
 Get all data from the database.
 
 ```python
-get_database()
+fiable_db.get_database()
 ```
 
 ### Load file
@@ -218,15 +226,7 @@ get_database()
 Load a file into the database.
 
 ```python
-load(filename)
-```
-
-### Save file
-
-Save the database to a file.
-
-```python
-save(filename, data)
+fiable_db.load(filename)
 ```
 
 ## Implementations in other languages
