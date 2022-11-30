@@ -37,6 +37,7 @@ def get_next_id(table: str = "default") -> int:
             return row["id"]
         else:
             return current_id
+
     last_id = reduce(get_id, database[::-1], None)
     # Return the next id, or 1 if there is no last id
     return last_id + 1 if last_id else 1
