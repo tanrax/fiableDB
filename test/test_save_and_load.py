@@ -3,11 +3,13 @@ from fiable_db import start, add, save, get_database, load
 
 filename = "fiabledb.json"
 
+
 def delete_file():
     """Delete the database file."""
     if os.path.exists(filename):
         os.remove(filename)
-    
+
+
 def test_empty():
     """Test that save() works when the database is empty."""
     delete_file()
@@ -24,7 +26,9 @@ def test_one():
     add({"name": "John", "age": 30})
     save()
     load()
-    assert get_database() == [{"id": 1, "rev": 1, "data": {"name": "John", "age": 30}}]
+    assert get_database() == [
+        {"id": 1, "rev": 1, "table": "default", "data": {"name": "John", "age": 30}}
+    ]
 
 
 def test_two():
@@ -36,6 +40,6 @@ def test_two():
     save()
     load()
     assert get_database() == [
-        {"id": 1, "rev": 1, "data": {"name": "John", "age": 30}},
-        {"id": 2, "rev": 1, "data": {"name": "Jane", "age": 28}},
+        {"id": 1, "rev": 1, "table": "default", "data": {"name": "John", "age": 30}},
+        {"id": 2, "rev": 1, "table": "default", "data": {"name": "Jane", "age": 28}},
     ]

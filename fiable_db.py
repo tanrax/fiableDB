@@ -109,12 +109,12 @@ def add(new_data: Type_Add_Data, table: str = "default") -> Type_Add_Return:
     """
     global database
     if isinstance(new_data, dict):
-        new_row = {"id": get_next_id(table), "rev": 1, "data": new_data}
+        new_row = {"id": get_next_id(table), "rev": 1, "table": table, "data": new_data}
         database.append(new_row)
         return new_row
     elif isinstance(new_data, list):
         for row in new_data:
-            new_row = {"id": get_next_id(table), "rev": 1, "data": row}
+            new_row = {"id": get_next_id(table), "rev": 1, "table": table, "data": row}
             database.append(new_row)
     else:
         raise TypeError("new_data must be a dict or list")

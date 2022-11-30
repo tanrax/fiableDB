@@ -1,2 +1,5 @@
-[] Add table in add testing
-[] Test Update
+* Tasks
+
+** DONE Add table in add testing
+** IN PROGRESS Test update
+** TODO Function update
