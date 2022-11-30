@@ -73,5 +73,28 @@ def test_add_in_table_foo():
         {"id": 4, "rev": 1, "table": "default", "data": {"name": "John", "age": 12}},
         {"id": 5, "rev": 1, "table": "default", "data": {"name": "Jane", "age": 34}},
         {"id": 6, "rev": 1, "table": "default", "data": {"name": "John", "age": 42}},
-        {"id": 7, "rev": 1, "table": "foo", "data": {"name": "John", "age": 42}},
+        {"id": 1, "rev": 1, "table": "foo", "data": {"name": "John", "age": 42}},
+    ]
+    add({"name": "Simone", "age": 33}, table="foo")
+    assert get_database() == [
+        {"id": 1, "rev": 1, "table": "default", "data": {"name": "John", "age": 42}},
+        {"id": 2, "rev": 1, "table": "default", "data": {"name": "John", "age": 12}},
+        {"id": 3, "rev": 1, "table": "default", "data": {"name": "Jane", "age": 34}},
+        {"id": 4, "rev": 1, "table": "default", "data": {"name": "John", "age": 12}},
+        {"id": 5, "rev": 1, "table": "default", "data": {"name": "Jane", "age": 34}},
+        {"id": 6, "rev": 1, "table": "default", "data": {"name": "John", "age": 42}},
+        {"id": 1, "rev": 1, "table": "foo", "data": {"name": "John", "age": 42}},
+        {"id": 2, "rev": 1, "table": "foo", "data": {"name": "Simone", "age": 33}},
+    ]
+    add({"name": "Jose", "age": 25})
+    assert get_database() == [
+        {"id": 1, "rev": 1, "table": "default", "data": {"name": "John", "age": 42}},
+        {"id": 2, "rev": 1, "table": "default", "data": {"name": "John", "age": 12}},
+        {"id": 3, "rev": 1, "table": "default", "data": {"name": "Jane", "age": 34}},
+        {"id": 4, "rev": 1, "table": "default", "data": {"name": "John", "age": 12}},
+        {"id": 5, "rev": 1, "table": "default", "data": {"name": "Jane", "age": 34}},
+        {"id": 6, "rev": 1, "table": "default", "data": {"name": "John", "age": 42}},
+        {"id": 1, "rev": 1, "table": "foo", "data": {"name": "John", "age": 42}},
+        {"id": 2, "rev": 1, "table": "foo", "data": {"name": "Simone", "age": 33}},
+        {"id": 7, "rev": 1, "table": "default", "data": {"name": "Jose", "age": 25}},
     ]

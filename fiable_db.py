@@ -1,4 +1,5 @@
 from typing import Dict, Tuple, Union, Sequence, TypedDict
+from functools import reduce
 import json
 from os import path
 
@@ -27,9 +28,18 @@ Type_Find_All_Return = Tuple[Type_Find_One_Return]
 
 
 def get_next_id(table: str = "default") -> int:
-    """Get the next id for a table"""
+    """Get the next id for the table"""
     global database
-    return database[-1]["id"] + 1 if database else 1
+
+    # Get the last id for the table
+    def get_id(current_id, row: TypeData) -> int:
+        if current_id == None and table == row["table"]:
+            return row["id"]
+        else:
+            return current_id
+    last_id = reduce(get_id, database[::-1], None)
+    # Return the next id, or 1 if there is no last id
+    return last_id + 1 if last_id else 1
 
 
 def start(file_name: str = "") -> str:
