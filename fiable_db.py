@@ -19,8 +19,8 @@ class TypeData(TypedDict):
 Type_Data_List = Tuple[TypeData]
 Type_Add_Data = Union[Dict, Sequence[Dict]]
 Type_Add_Return = Union[Tuple[int, int, Dict], Tuple[Tuple[int, int, Dict]], None]
-Type_Update_Return = Union[Tuple[Tuple[int, int, Dict]]]
-Type_Delete_Return = Union[Tuple[Tuple[int, int, Dict]]]
+Type_Update_Return = Union[Tuple[Tuple[int, int, Dict]], None]
+Type_Delete_Return = Union[Tuple[Tuple[int, int, Dict]], None]
 Type_Find_One_Return = TypeData
 Type_Find_All_Return = Tuple[Type_Find_One_Return]
 
