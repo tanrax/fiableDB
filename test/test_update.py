@@ -209,13 +209,19 @@ def test_update_multiple_values_default():
             "id": 1,
             "rev": 1,
             "table": "default",
-            "data": {"name": "David", "age": 9, "height": 188},
+            "data": {"name": "Antony", "age": 77, "height": 188},
         },
         {
             "id": 2,
             "rev": 1,
             "table": "default",
             "data": {"name": "Dolores", "age": 32},
+        },
+        {
+            "id": 1,
+            "rev": 2,
+            "table": "default",
+            "data": {"name": "David", "age": 9, "height": 188},
         },
     ]
 
@@ -231,13 +237,19 @@ def test_update_multiple_values_table():
             "id": 1,
             "rev": 1,
             "table": "users",
-            "data": {"name": "David", "age": 9, "height": 188},
+            "data": {"name": "Antony", "age": 77, "height": 188},
         },
         {
             "id": 2,
             "rev": 1,
             "table": "users",
             "data": {"name": "Dolores", "age": 32},
+        },
+        {
+            "id": 1,
+            "rev": 2,
+            "table": "users",
+            "data": {"name": "David", "age": 9, "height": 188},
         },
     ]
 
@@ -257,8 +269,6 @@ def test_update_with_keys_not_exists():
                 "name": "Antony",
                 "age": 77,
                 "height": 188,
-                "is_active": True,
-                "eyes": "blue",
             },
         },
         {
@@ -266,6 +276,18 @@ def test_update_with_keys_not_exists():
             "rev": 1,
             "table": "default",
             "data": {"name": "Dolores", "age": 32},
+        },
+        {
+            "id": 1,
+            "rev": 2,
+            "table": "default",
+            "data": {
+                "name": "Antony",
+                "age": 77,
+                "height": 188,
+                "is_active": True,
+                "eyes": "blue",
+            },
         },
     ]
 
@@ -281,12 +303,18 @@ def test_update_with_force():
             "id": 1,
             "rev": 1,
             "table": "default",
-            "data": {"name": "David", "age": 9},
+            "data": {"name": "Antony", "age": 77, "height": 188},
         },
         {
             "id": 2,
             "rev": 1,
             "table": "default",
             "data": {"name": "Dolores", "age": 32},
+        },
+        {
+            "id": 1,
+            "rev": 2,
+            "table": "default",
+            "data": {"name": "David", "age": 9},
         },
     ]

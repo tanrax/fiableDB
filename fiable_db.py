@@ -132,7 +132,7 @@ def add(new_data: Type_Add_Data, table: str = "default") -> Type_Add_Return:
 
 
 def update(
-    id: int, new_data: dict, table: str = "", force: bool = False
+    id: int, new_data: dict, table: str = "default", force: bool = False
 ) -> Type_Update_Return:
     """Update data in the database
     Args:
@@ -141,9 +141,29 @@ def update(
         table (str, optional): The table to update. Defaults to "".
         force (bool, optional): Force the update. Defaults to False.
     Returns:
-        dict[int, int, dict]: The data updated
+        dict[int, int, dict] or None: The data updated
     """
-    print("Function not implemented yet")
+    global database
+    # Get the key to update
+    def get_key(
+        current_key: Union[Tuple[int, int, Dict], None], key_and_row: TypeData
+    ) -> Union[int, None]:
+        if (
+            current_key == None
+            and key_and_row["id"] == id
+            and key_and_row["table"] == table
+        ):
+            return key_and_row[0]
+        return None
+
+    key = reduce(get_key, list(enumerate(database))[::-1], None)
+    if key:
+        if force:
+            database[key]["data"] = new_data
+        else:
+            database[key]["data"].update(new_data)
+        database[key]["rev"] += 1
+    return None
 
 
 def delete(id: int, data: dict, table: str = "") -> Type_Delete_Return:
