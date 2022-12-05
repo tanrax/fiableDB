@@ -1,5 +1,6 @@
 * Tasks
 
-** IN PROGRESS Test update
-** TODO Function update
-** DONE Add table in add testing
+** IN PROGRESS Function update
+** TODO Test delete
+** TODO Function delete
+
