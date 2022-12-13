@@ -2,6 +2,7 @@ from typing import Dict, Tuple, Union, Sequence, TypedDict
 from functools import reduce
 import json
 from os import path
+from copy import deepcopy
 
 # Variables
 FILE = "fiabledb.json"
@@ -110,6 +111,31 @@ def get_database() -> Type_Data_List:
     return database
 
 
+def get_pos_by_id(id: int, table: str = "") -> int:
+    """Get the position of the data by id
+    Args:
+        id (int): The id of the data
+        table (str, optional): The table to search in. Defaults to "".
+    Returns:
+        int: The position of the data
+    """
+    global database
+
+    def get_key(
+        current_key: Union[TypeData, None], key_and_row: TypeData
+    ) -> Union[int, None]:
+        """Function to get the key of the data"""
+        if (
+            current_key is None
+            and key_and_row[1]["id"] == id
+            and key_and_row[1]["table"] == table
+        ):
+            return key_and_row[0]
+        return current_key
+
+    return reduce(get_key, list(enumerate(database))[::-1], None)
+
+
 def add(new_data: Type_Add_Data, table: str = "default") -> Type_Add_Return:
     """Add data to the database
     Args:
@@ -145,24 +171,19 @@ def update(
     """
     global database
     # Get the key to update
-    def get_key(
-        current_key: Union[Tuple[int, int, Dict], None], key_and_row: TypeData
-    ) -> Union[int, None]:
-        if (
-            current_key == None
-            and key_and_row["id"] == id
-            and key_and_row["table"] == table
-        ):
-            return key_and_row[0]
-        return None
-
-    key = reduce(get_key, list(enumerate(database))[::-1], None)
-    if key:
+    key = get_pos_by_id(id, table)
+    if key is not None:
+        row = deepcopy(database[key])
+        my_new_data = deepcopy(new_data)
         if force:
-            database[key]["data"] = new_data
+            row["data"] = my_new_data
         else:
-            database[key]["data"].update(new_data)
-        database[key]["rev"] += 1
+            row["data"].update(my_new_data)
+        new_rev = row["rev"] + 1
+        new_data_to_row = row["data"]
+        new_row = {"id": id, "rev": new_rev, "table": table, "data": new_data_to_row}
+        database.append(new_row)
+        return new_row
     return None
 
 
