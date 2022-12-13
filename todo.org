@@ -1,6 +1,5 @@
 * Tasks
 
-** IN PROGRESS Function update
-** TODO Test delete
+** IN PROGRESS Test delete
 ** TODO Function delete
 
