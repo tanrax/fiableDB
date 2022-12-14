@@ -1,5 +1,6 @@
 * Tasks
 
-** IN PROGRESS Test delete
-** TODO Function delete
-
+** TODO Test Find one
+** TODO Function Find one
+** TODO Test Find All
+** TODO Function Find All

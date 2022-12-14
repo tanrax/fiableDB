@@ -109,14 +109,7 @@ You can be specific by using the `id`.
 
 ```python
 fiable_db.delete(id=4)
-# {"id": 4, "rev": 6, "table": "default", "data": None}
-```
-
-And you can delete by performing a search for their values:
-
-```python
-fiable_db.delete(data={"name": "Javier"})
-# {"id": 4, "rev": 6, "table": "default", "data": None}
+# {"id": 4, "rev": 6, "table": "default", "data": {}}
 ```
 
 ### Step 5: Find one

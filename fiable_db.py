@@ -187,7 +187,7 @@ def update(
     return None
 
 
-def delete(id: int, data: dict, table: str = "") -> Type_Delete_Return:
+def delete(id: int, table: str = "default") -> Type_Delete_Return:
     """Delete data from the database
     Args:
         id (int): The id of the data to delete
@@ -196,7 +196,7 @@ def delete(id: int, data: dict, table: str = "") -> Type_Delete_Return:
     Returns:
         dict[int, int, dict]: The data deleted
     """
-    print("Function not implemented yet")
+    return update(id=id, new_data={}, table=table, force=True)
 
 
 def find_one(
