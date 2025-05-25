@@ -22,10 +22,10 @@ A simple, reliable, immutable database that stores all data revisions in JSON fo
 
 ## Install
 
-Python version: >=3.8
+Python version: >=3.9
 
 ```python
-pip3 install --user fiable_db
+pip3 install --user fiabledb
 ```
 
 ## Documentation
@@ -403,22 +403,22 @@ import fiable_db
 try:
     # Initialize database
     fiable_db.start("myapp.json")
-    
+
     # Add data with validation
     if user_data and isinstance(user_data, dict):
         result = fiable_db.add(user_data, table="users")
-        
+
     # Always check for None results
     user = fiable_db.find_one(id=user_id, table="users")
     if user is not None:
         print(f"Found user: {user['data']['name']}")
     else:
         print("User not found")
-        
+
     # Save changes
     if not fiable_db.save():
         print("Warning: Could not save database")
-        
+
 except (TypeError, ValueError) as e:
     print(f"Invalid input: {e}")
 except FileNotFoundError as e:

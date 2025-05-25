@@ -1,0 +1,12 @@
+[project]
+name = "fiabledb"
+version = "1.0.0"
+description = "Immutable NoSQL database in a plain file"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "ruff>=0.11.11",
+    "setuptools>=80.8.0",
+    "twine>=6.1.0",
+    "wheel>=0.45.1",
+]

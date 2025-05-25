@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(
-    name="fiable_db",
-    py_modules=["fiable_db"],
-    version="VERSION",
+    name="fiabledb",
+    py_modules=["fiabledb"],
+    version="1.0.0",
     python_requires=">3.7",
     description=" Immutable NoSQL database in a plain file ",
     author="Andros Fenollosa",
